@@ -13,7 +13,19 @@ func main() {
 	ch := tcpWorker.GetChan()
 	go func() {
 		for {
-			fmt.Println(<- ch)
+			str := <- ch
+			connMap := tcpWorker.GetConnMap()
+			for k, v := range connMap{
+				var sendStr string
+				if k != str.ConnIndex {
+					sendStr = fmt.Sprintf("【用户%v】%v\n", str.ConnIndex, string(str.Msg))
+				} else {
+					sendStr = fmt.Sprintf("【你】%v\n", string(str.Msg))
+				}
+				if _, err := v.Write([]byte(sendStr)); err != nil {
+					fmt.Printf("用户%v，信息发送失败\n", k)
+				}
+			}
 		}
 	}()
 	tcpWorker.Accept()

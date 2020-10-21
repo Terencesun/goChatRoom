@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -17,5 +18,13 @@ func TestUserCreate(t *testing.T)  {
 		}
 	} else {
 		t.Errorf("创建失败，%v\n", err)
+	}
+}
+
+func TestChn(t *testing.T)  {
+	a := "你好"
+	fmt.Printf("%T\n", a)
+	for _, v := range []rune(string([]byte(a))) {
+		fmt.Println(string(v))
 	}
 }
