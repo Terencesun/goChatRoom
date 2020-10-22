@@ -1,9 +1,9 @@
 package tcpholder
 
 import (
+	errorCode "common/errorcode"
 	"fmt"
 	"net"
-	errorCode "server/errorcode"
 	"strconv"
 	"strings"
 )

@@ -1,7 +1,7 @@
 package usermgr
 
 import (
-	errorCode "server/errorcode"
+	errorCode "common/errorcode"
 )
 
 // 用户管理模块

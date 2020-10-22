@@ -1,11 +1,10 @@
 package main
 
 import (
-	"bufio"
+	"client/getpass"
+	errorCode "common/errorcode"
 	"fmt"
 	"net"
-	"os"
-	errorCode "server/errorcode"
 	"strings"
 )
 
@@ -21,10 +20,11 @@ func main() {
 			}
 		}()
 		go func() {
-			inputReader := bufio.NewReader(os.Stdin)
+			//inputReader := bufio.NewReader(os.Stdin)
 			for {
-				input, _ := inputReader.ReadString('\n')
-				trimmedInput := strings.Trim(input, "\r\n")
+				str := getpass.Prompt("\r\n")
+				//input, _ := inputReader.ReadString('\n')
+				trimmedInput := strings.Trim(str, "\r\n")
 				_, err := conn.Write([]byte(trimmedInput))
 				if err != nil {
 					return
